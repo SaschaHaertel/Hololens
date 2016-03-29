@@ -21,26 +21,37 @@ For all scene loaded, an optional callback for the loaded scene can be provided.
 #IntroductionFlow
 
 IntroductionFlow contains the on-rails experience in the demo that happens when you first start Galaxy Explorer. The editor defines timings and voice over to be played in different states of the introduction:
-	- AppDescription
-	- Developers
-	- Community
-	- SlateFadeout
-		○ The above states are the first slates you see when the application starts, explaining what Galaxy Explorer is all about and how it came to be. You can click or air tap in any of these states to move to the Logo state.
-	- Logo
-	- LogoFadeout
-		○ The above states show the Galaxy Explorer logo. Clicking or air tapping before the timer completes for the logo will skip to the PreloadSolarSystem state.
-	- PreloadSolarSystem
-		○ This state loads the solar system and the first earth that you see. The preloaded solar system is a performance optimization to prevent a hitch when transitioning from earth to the solar system for the first time.
-	- EarthHydrate
-	- PlaceEarth
-		○ At this point in the introduction, the earth becomes head locked to be placed with gaze. Click or air tap to place the earth and start the experience.
-	- EarthFadeout
-	- Earth
-	- SolarSystem
-	- Galaxy
-		○ The above states cannot be skipped and contain voice over the introduce the flow of the experience.
-	- Complete
-		○ When this state is entered, the IntroductionFlow object is destroyed. Other scripts will identify if the application is in the introduction (i.e.: the TransitionManager does not fade in the PointsOfInterest during the introduction because interacting with them has not yet been explained).
+* AppDescription
+* Developers
+* Community
+* SlateFadeout
+	
+The above states are the first slates you see when the application starts, explaining what Galaxy Explorer is all about and how it came to be. You can click or air tap in any of these states to move to the Logo state.
+
+* Logo
+* LogoFadeout
+
+The above states show the Galaxy Explorer logo. Clicking or air tapping before the timer completes for the logo will skip to the PreloadSolarSystem state.
+
+* PreloadSolarSystem
+
+This state loads the solar system and the first earth that you see. The preloaded solar system is a performance optimization to prevent a hitch when transitioning from earth to the solar system for the first time.
+
+* EarthHydrate
+* PlaceEarth
+
+At this point in the introduction, the earth becomes head locked to be placed with gaze. Click or air tap to place the earth and start the experience.
+
+* EarthFadeout
+* Earth
+* SolarSystem
+* Galaxy
+
+The above states cannot be skipped and contain voice over the introduce the flow of the experience.
+
+* Complete
+
+When this state is entered, the IntroductionFlow object is destroyed. Other scripts will identify if the application is in the introduction (i.e.: the TransitionManager does not fade in the PointsOfInterest during the introduction because interacting with them has not yet been explained).
 		
 The IntroductionFlow loads the first scene in the experience by telling the TransitionManager to switch between different scenes.
 
@@ -50,9 +61,9 @@ The galaxy rendering process was mostly described in Tech Process - Creating a G
 
 The code itself lives in Assets\Galaxy and is comprised of a set of SpiralGalaxy which make up the stars and clouds (see MilkyWay.prefab).
 The galaxy is the result of 3 layers:
-	- Stars, rendered last but first in the hierarchy
-	- Clouds shadows, that make up the dark spots that can be seen when looking at the Galaxy from the side
-	- Clouds, that make up the fluffy blue clouds that surround the stars
+* Stars, rendered last but first in the hierarchy
+* Clouds shadows, that make up the dark spots that can be seen when looking at the Galaxy from the side
+* Clouds, that make up the fluffy blue clouds that surround the stars
 
 The galaxy itself being rendered through Unity's DrawProcedural via the OnPostRender method. OnPostRender being called only on scripts attached to Cameras, we use a RenderProxy script to trigger the Galaxy rendering.
 
@@ -69,10 +80,10 @@ The ToolManager handles the Button and Tool settings that can be called from any
 PointOfInterests (POIs) are used to interact with a specific part of a hologram (galaxy, solar system, a planet) as opposed to the entire hologram, which is controlled by Tools. They are represented in the app by a line from the content to interact with to a marker.
 
 Parts of a PointOfInterest:
-	• BillboardLine - the line that connects the interest point to interact with to an indicator at the top of the line. The line is always vertical and scales with distance as a UI element. It does not rescale with content and will always start at a target point.
-	• Indicator - the card that is shown above the BillboardLine.
-	• Description - a text card that fades in when GazeSelection collides with any collider in the POI hierarchy.
-	• Transition Scene (optional) - the scene that is loaded through the TransitionManager when the POI is selected.
+* BillboardLine - the line that connects the interest point to interact with to an indicator at the top of the line. The line is always vertical and scales with distance as a UI element. It does not rescale with content and will always start at a target point.
+* Indicator - the card that is shown above the BillboardLine.
+* Description - a text card that fades in when GazeSelection collides with any collider in the POI hierarchy.
+* Transition Scene (optional) - the scene that is loaded through the TransitionManager when the POI is selected.
 
 OrbitScalePointOfInterest is a toggle that converts between Realistic and Simplified orbit and size views in the solar system.
 
@@ -87,16 +98,18 @@ Each view (galaxy, solar system, each planet, and the sun) is a scene in Unity. 
 Forward transitions are marked by using a PointOfInterest to load a scene. The viewer looks at a destination marker or target (i.e.: a planet in the solar system view) and clicks or air taps to start the transition to the new scene. These transitions add a new scene to a stack in the ViewLoader. Back transitions pop the ViewLoader scene stack to determine the scene to go back to. This is triggered through the UI back button or voice command.
 
 Forward and backward transition flow:
-	• The next scene is loaded asynchronously, objects slow to a stop, collisions are disabled, and POIs fade out.
-	• After all of the above is complete, the transition starts by placing the newly loaded scene in the existing scene. The scenes are parented, translated, rotated, and scaled into position while the old scene fades out (handles deletion of the scene when it fades out completely).
-		○ For forward transitions, the new content fits in the POI target.
-		○ For backward transitions, the new content is scaled up to match up the POI target with the old scene. For these transitions the POI target is completely visible while all other content in the new scene is faded in during the transition.
-	• After the transition is complete, POIs are faded in, collisions are enabled, and objects start to move.
+* The next scene is loaded asynchronously, objects slow to a stop, collisions are disabled, and POIs fade out.
+* After all of the above is complete, the transition starts by placing the newly loaded scene in the existing scene. The scenes are parented, translated, rotated, and scaled into position while the old scene fades out (handles deletion of the scene when it fades out completely).
+
+For forward transitions, the new content fits in the POI target.
+For backward transitions, the new content is scaled up to match up the POI target with the old scene. For these transitions the POI target is completely visible while all other content in the new scene is faded in during the transition.
+
+* After the transition is complete, POIs are faded in, collisions are enabled, and objects start to move.
 
 Performance choices:
-	• Removing the POIs during a transition is both a design and performance bonus. When the POIs are hidden, they are disabled, saving rendering costs.
-	• The orbit updater has some expensive computation that may not converge quickly, so the planets in the solar system stop updating during transitions.
-	• The first transition from the earth to the solar system is taxing, especially on load. We preload the solar system during a blank screen and delete it at the end of the introduction to expedite the first time the solar system is loaded (part of transition logic).
+* Removing the POIs during a transition is both a design and performance bonus. When the POIs are hidden, they are disabled, saving rendering costs.
+* The orbit updater has some expensive computation that may not converge quickly, so the planets in the solar system stop updating during transitions.
+* The first transition from the earth to the solar system is taxing, especially on load. We preload the solar system during a blank screen and delete it at the end of the introduction to expedite the first time the solar system is loaded (part of transition logic).
 
 The TransitionManager publically exposes the FadeContent coroutine, so any script logic can fade in/out an object and all of its children overtime, given an animation curve.
 
@@ -107,9 +120,9 @@ Faders control the transition alpha for any materials that use shaders supportin
 Use the TransitionManager.Instance.FadeContent() coroutine to fade in/out content over time. All faders on the object passed to the function will fade in/out. You can disable specific faders of the parent object passed to the function by calling EnableFade() on those faders before the coroutine is started; the function assumes that faders that have already been enabled are handled by other logic.
 
 Parts of the Fader:
-	• Faders chained in a hierarchy will, by default, only contain materials used by renderers that do not have a closer Fader parent in its hierarchical tree.
-	• Call EnableFade() to allow a shader to receive and use _TransitionAlpha properly and DisableFade() to restore its shader settings to their original settings for performance outside of transitions.
-	• When enabled, a Fader can have its alpha changed through SetAlpha.
+* Faders chained in a hierarchy will, by default, only contain materials used by renderers that do not have a closer Fader parent in its hierarchical tree.
+* Call EnableFade() to allow a shader to receive and use _TransitionAlpha properly and DisableFade() to restore its shader settings to their original settings for performance outside of transitions.
+* When enabled, a Fader can have its alpha changed through SetAlpha.
 
 PointOfInterest.POIFader - CardPointOfInterest (see PointOfInterest) is a fader of this type. For shared meshes of this fader, the _TransitionAlpha is used to individually set transparency without breaking batch rendering for performance.
 
@@ -134,10 +147,10 @@ The GazeSelectionManager filters the gaze selection targets down to a single tar
 Only a GazeSelectionTarget can be selected. This gives the app occluder support, allowing other colliders to block interactions. If there is a new component that should support gaze selection, it must inherit from the GazeSelectionTarget component and implement the IGazeSelectionTarget interface. GazeSelectionTarget and IGazeSelecdtionTarget have function calls to respond to gaze selection changes (selection and deselection), hand and clicker input, and void commands.
 
 The following component types are GazeSelectionTargets:
-	• Hyperlink - used in the About Galaxy Explorer slate to explore more about Galaxy Explorer outside of the application.
-	• Button - the Back, Grab, Reset, About, and Controls buttons in the ToolPanel.
-	• Tool - the Zoom and Tilt tools in the ToolPanel.
-	• PointOfInterest and PointOfInterestReference - define the interactions with specific objects in the galaxy and solar system.
+* Hyperlink - used in the About Galaxy Explorer slate to explore more about Galaxy Explorer outside of the application.
+* Button - the Back, Grab, Reset, About, and Controls buttons in the ToolPanel.
+* Tool - the Zoom and Tilt tools in the ToolPanel.
+* PointOfInterest and PointOfInterestReference - define the interactions with specific objects in the galaxy and solar system.
 PlacementControl - an invisible barrier that is enabled when the Grab tool is selected. Selecting this disabled Grab and places the content in its current location.
 
 #VOManager
@@ -180,7 +193,7 @@ For the shadow of the rings of the planet, we project the world space position o
 
 Performance Investigation
 During the development process, we used various tools to investigate possible performance optimization in our rendering tasks.
-	- Unity Profiler - Integrated with Unity, it gives a good overview where time is spent on the CPU and how many elements are being drawn on the screen.
-	- Unity's shader "compile and show code" - It shows the shader assembly and gives an idea on how expensive the shaders will be once being executed on device. A rule of thumb is that lower instructions count especially in the pixel/fragment shader is better.
-	- Visual Studio Graphics Debugger - Very powerful tool that gives timing on both the CPU and GPU side, can analyze shader performance and reveal hot code path on the CPU
+* Unity Profiler - Integrated with Unity, it gives a good overview where time is spent on the CPU and how many elements are being drawn on the screen.
+* Unity's shader "compile and show code" - It shows the shader assembly and gives an idea on how expensive the shaders will be once being executed on device. A rule of thumb is that lower instructions count especially in the pixel/fragment shader is better.
+* Visual Studio Graphics Debugger - Very powerful tool that gives timing on both the CPU and GPU side, can analyze shader performance and reveal hot code path on the CPU
 GPU View (Integrated with Visual Studio Graphics Debugger) - Gives precise timing on the GPU and CPU workload on device. Best used to determine if the experience is GPU bound or CPU bound.
