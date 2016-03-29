@@ -8,6 +8,11 @@ The following sections serve as guide posts to help navigate the code by explain
 
 Note that by default when you point Unity at this repo, it will open a new scene. Navigate to /Scenes and double-click MainScene to setup the editor properly. After that, hitting Play will start the experience.
 
+#Building for HoloLens
+From Unity, choose File->Build Settings to bring up the Build Settings window. All of the scenes in the Scenes to Build section should be checked. Choose Windows Store as the Platform. On the right side, choose Universal 10 as the SDK, D3D as the UWP Build Type, and then click Build. Create a new folder called 'UWP' and choose this folder.
+
+After the build completes successfully, an explorer window will pop up. Navigate into the UWP folder and double-click GalaxyExplorer.sln to launch Visual Studio. From Visual Studio, set the Configuration to Master x86. Now you can deploy to the Emulator, a Remote Device, or create a Store package to deploy at a later time.
+
 #CoreSystems
 
 CoreSystems is a scene that we load that has most of our global game objects. Things like our audio rig (which has our background music and VOManager) and things like our Input stack. CoreSystems is loaded into any scene via ViewLoader so that developers and artists can run any scene (e.g. SunView.unity) independent from running the MainScene. 
