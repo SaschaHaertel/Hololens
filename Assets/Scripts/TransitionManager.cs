@@ -426,7 +426,6 @@ public class TransitionManager : Singleton<TransitionManager>
         // activate the content target but zero its scale, so we do not see it the first frame it is loaded
         GameObject contentTarget = content.transform.GetChild(0).gameObject;
         contentTarget.SetActive(true);
-        Vector3 contentTargetLocalScale = contentTarget.transform.localScale;
         contentTarget.transform.localScale = Vector3.zero;
 
         // delete content that has custom renderers; these preloaded assets will distort actually-loaded solar system assets, so get rid of them
