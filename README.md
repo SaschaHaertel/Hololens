@@ -4,6 +4,10 @@ Galaxy Explorer is an open-source HoloLens application that was developed in 6-w
 
 The following sections serve as guide posts to help navigate the code by explaining some of the larger systems, both how they work and how they interact.
 
+#Running in Unity
+
+Note that by default when you point Unity at this repo, it will open a new scene. Navigate to /Scenes and double-click MainScene to setup the editor properly. After that, hitting Play will start the experience.
+
 #CoreSystems
 
 CoreSystems is a scene that we load that has most of our global game objects. Things like our audio rig (which has our background music and VOManager) and things like our Input stack. CoreSystems is loaded into any scene via ViewLoader so that developers and artists can run any scene (e.g. SunView.unity) independent from running the MainScene. 
