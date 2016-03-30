@@ -4,7 +4,13 @@ Galaxy Explorer is an open-source HoloLens application that was developed in 6-w
 
 The following sections serve as guide posts to help navigate the code by explaining some of the larger systems, both how they work and how they interact.
 
+#HoloLens Tools
+
+Download all of the developer tools from the Microsoft Developer Website: http://lens.ms/Sa37sr
+
 #Running in Unity
+
+This project is built with the Unity HoloLens Technical Preview. A link to download the latest version can be found with the rest of the HoloLens tools.
 
 Note that by default when you point Unity at this repo, it will open a new scene. Navigate to /Scenes and double-click MainScene to setup the editor properly. After that, hitting Play will start the experience.
 
