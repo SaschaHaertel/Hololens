@@ -120,7 +120,7 @@ Performance choices:
 * The orbit updater has some expensive computation that may not converge quickly, so the planets in the solar system stop updating during transitions.
 * The first transition from the earth to the solar system is taxing, especially on load. We preload the solar system during a blank screen and delete it at the end of the introduction to expedite the first time the solar system is loaded (part of transition logic).
 
-The TransitionManager publically exposes the FadeContent coroutine, so any script logic can fade in/out an object and all of its children overtime, given an animation curve.
+The TransitionManager publicly exposes the FadeContent coroutine, so any script logic can fade in/out an object and all of its children overtime, given an animation curve.
 
 #Fader
 
