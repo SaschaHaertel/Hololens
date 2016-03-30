@@ -178,6 +178,8 @@ VOManager works best when it exists in a persistent system as it inherits the Si
 
 WorldAnchors are Unity components that create Windows Volumetric Spatial Anchors at a defined real world transform in space. The WorldAnchorHelper class wraps up all of the calls to create and maintain the WorldAnchor that defines the position where the galaxy is placed as part of the introduction process.
 
+One important function of WorldAnchorHelper is to listen for changes in the locatability of the created WorldAnchor. A WorldAnchor will only be located when the device is able to find the playspace where the WorldAnchor was created. While the WorldAnchor is not located, the main content will be hidden. If the content is hidden for more than five seconds then the content is placed in the 'grabbed' state and shown so it can be placed again.
+
 #Shaders
 
 Galaxy
