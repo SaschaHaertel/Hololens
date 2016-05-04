@@ -78,15 +78,21 @@ public class GazeSelection : MonoBehaviour
                     case Cursor.CursorCollisionSearch.SphereCastSearch:
                         if (UseSphericalConeSearch)
                         {
+                            // calculate radius of sphere to cast based on GazeSpreadDegrees at GazeDistance
+                            float sphereRadius = GazeDistance * Mathf.Tan(Mathf.Deg2Rad * (GazeSpreadDegrees / 2.0f));
                             // get all target objects in a sphere from the camera
-                            RaycastHit[] hitTargets = Physics.SphereCastAll(gazeStart, GazeDistance, Camera.main.transform.forward, 0.0f, priorityMask.layers);
+                            RaycastHit[] hitTargets = Physics.SphereCastAll(gazeStart, sphereRadius, Camera.main.transform.forward, 0.0f, priorityMask.layers);
 
                             // only consider target objects that are within the target spread angle specified on start
                             foreach (RaycastHit target in hitTargets)
                             {
                                 Vector3 toTarget = Vector3.Normalize(target.transform.position - Camera.main.transform.position);
                                 float dotProduct = Vector3.Dot(Camera.main.transform.forward, toTarget);
-                                if (Vector3.Dot(Camera.main.transform.forward, toTarget) >= targetSpreadMinValue)
+                                // The dotProduct of our two vectors is equivalent to the cosine
+                                // of the angle between them. If it is larger than the targetSpreadValue
+                                // established in Start(), that means the hit occurred within the
+                                // cone and the hitTarget should be added to our list of selectedTargets.
+                                if (dotProduct >= targetSpreadMinValue)
                                 {
                                     selectedTargets[-dotProduct] = target;
                                 }
