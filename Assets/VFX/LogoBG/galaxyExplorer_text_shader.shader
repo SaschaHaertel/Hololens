@@ -58,7 +58,7 @@ Shader "Shader Forge/galaxyExplorer_text_shader" {
                 VertexOutput o = (VertexOutput)0;
                 o.uv1 = v.texcoord1;
                 o.normalDir = UnityObjectToWorldNormal(v.normal);
-                o.posWorld = mul(_Object2World, v.vertex);
+                o.posWorld = mul(unity_ObjectToWorld, v.vertex);
                 o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
                 UNITY_TRANSFER_FOG(o,o.pos);
                 return o;
