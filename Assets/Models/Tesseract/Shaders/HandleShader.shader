@@ -48,10 +48,10 @@
 				v2f o;
 				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
 				
-				float3 normal = normalize(mul((float3x3)_Object2World, v.normal));
-				float3 tangent = normalize(mul((float3x3)_Object2World, v.tangent));
+				float3 normal = normalize(mul((float3x3)unity_ObjectToWorld, v.normal));
+				float3 tangent = normalize(mul((float3x3)unity_ObjectToWorld, v.tangent));
 				float3 bitangent = cross(normal, tangent);
-				float3 worldPos = mul(_Object2World, v.vertex).xyz;
+				float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 
 				float3 posFromCamera = normalize(worldPos - _WorldSpaceCameraPos);
 				float alongBiTan = dot(posFromCamera, bitangent);

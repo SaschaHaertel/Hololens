@@ -107,13 +107,13 @@
 				v2f vert(appdata v)
 				{
 					v2f o;
-					float3 wPos = mul(_Object2World, v.vertex);
+					float3 wPos = mul(unity_ObjectToWorld, v.vertex);
 					o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
 					o.uv = float4(TRANSFORM_TEX(v.uv, _NormalAlpha), TRANSFORM_TEX(v.uv, _MainTex));
 					o.clipAmount = CalcVertClipAmount(wPos);
 
-					o.normal = normalize(mul((float3x3)_Object2World, v.normal));
-					o.tangent = normalize(mul((float3x3)_Object2World, v.tangent.xyz));
+					o.normal = normalize(mul((float3x3)unity_ObjectToWorld, v.normal));
+					o.tangent = normalize(mul((float3x3)unity_ObjectToWorld, v.tangent.xyz));
 					o.binormal = normalize(cross(o.normal, o.tangent) * v.tangent.w);
 
 					o.camToPixel = normalize(wPos - _WorldSpaceCameraPos);

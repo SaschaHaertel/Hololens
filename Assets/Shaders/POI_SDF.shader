@@ -66,7 +66,7 @@
 			v2f vert(appdata_t IN)
 			{
 				v2f OUT;
-				float3 wPos = mul(_Object2World, IN.vertex);
+				float3 wPos = mul(unity_ObjectToWorld, IN.vertex);
 				OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
 				OUT.clipAmount = CalcVertClipAmount(wPos);
 				OUT.texcoord = TRANSFORM_TEX(IN.texcoord, _MainTex);

@@ -1,6 +1,4 @@
-﻿// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
-
-Shader "POI_Porthole"
+﻿Shader "POI_Porthole"
 {
 	Properties
 	{
@@ -71,7 +69,7 @@ Shader "POI_Porthole"
 				o.color.w = (1 - v.color.g) * v.color.r;
 
                 // calculate clip fade out
-				float3 wPos = mul(_Object2World, v.vertex);
+				float3 wPos = mul(unity_ObjectToWorld, v.vertex);
 				o.clipAmount = CalcVertClipAmount(wPos);
 
 				return o;
