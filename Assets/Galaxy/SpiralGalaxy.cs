@@ -107,7 +107,7 @@ public class SpiralGalaxy : MonoBehaviour
 
     private IEnumerator Start()
     {
-        while (!Camera.main || Camera.main.GetComponent<GalaxyCameraSetup>() != null || !Camera.main.isActiveAndEnabled)
+        while (!Camera.main || !Camera.main.isActiveAndEnabled)
         {
             yield return null;
         }
