@@ -12,6 +12,8 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
     public float IntroLogoTime = 4.5f;
     public float MinTimeInForDialog = 2.0f;
     public float DialogExitTime = 2.0f;
+    [Tooltip("Causes the flow to skip placing the earth. This is set to true in Awake if the experience is not holographic.")]
+    public bool SkipPlaceEarth = false;
     public float SecondsToFadeOutEarth;
     public float SecondsOnEarth;
     public float SecondsOnSolarSystem;
@@ -36,7 +38,7 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
     private Animator logoAnimator;
     private AudioSource audioSource;
 
-    private enum IntroductionState
+    public enum IntroductionState
     {
         IntroductionStateAppDescription,
         IntroductionStateDevelopers,
@@ -54,11 +56,20 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
         IntroductionStateComplete
     }
 
-    private IntroductionState currentState = IntroductionState.IntroductionStateAppDescription;
+    public IntroductionState currentState = IntroductionState.IntroductionStateAppDescription;
 
     private float timeInState = 0.0f;
     private bool coreSystemsLoaded = false;
 
+    private void Awake()
+    {
+#if !UNITY_EDITOR
+        // Skip placing the earth if we aren't in a VR device.
+        // We do this check in a !UNITY_EDITOR block to allow for testing
+        // from inside the editor without having to change code.
+        SkipPlaceEarth = !UnityEngine.VR.VRDevice.isPresent;
+#endif
+    }
     private void Start()
     {
         if (Logo == null)
@@ -125,7 +136,6 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
 
             case IntroductionState.IntroductionStateSlateFadeout:
             case IntroductionState.IntroductionStateLogoFadeout:
-            case IntroductionState.IntroductionStateEarthHydrate:
                 if (timeInState >= DialogExitTime)
                 {
                     AdvanceIntroduction();
@@ -135,6 +145,14 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
 
             case IntroductionState.IntroductionStatePreloadSolarSystem:
                 if (TransitionManager.Instance.InTransition == false)
+                {
+                    AdvanceIntroduction();
+                }
+
+                break;
+
+            case IntroductionState.IntroductionStateEarthHydrate:
+                if (SkipPlaceEarth || (timeInState >= DialogExitTime))
                 {
                     AdvanceIntroduction();
                 }
@@ -155,6 +173,13 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
                             introEarth.SetIntroMode(true);
                             PlayOneShot(EarthPlacement);
                         }
+                    }
+                }
+                else
+                {
+                    if (SkipPlaceEarth && TransitionManager.Instance.InTransition == false)
+                    {
+                        InputRouter.Instance.OnTapped(InteractionSourceKind.Other, 1, new Ray(Vector3.zero, Vector3.forward));
                     }
                 }
 
@@ -224,6 +249,12 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
         switch (currentState)
         {
             case IntroductionState.IntroductionStatePlaceEarth:
+                if (!SkipPlaceEarth)
+                {
+                    AdvanceIntroduction();
+                }
+                break;
+
             case IntroductionState.IntroductionStateLogo:
                 AdvanceIntroduction();
                 break;
@@ -282,7 +313,10 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
                     break;
 
                 case IntroductionState.IntroductionStatePreloadSolarSystem:
-                    VOManager.Instance.PlayClip(CenterEarth);
+                    if (!SkipPlaceEarth)
+                    {
+                        VOManager.Instance.PlayClip(CenterEarth);
+                    }
                     break;
             }
 

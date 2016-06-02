@@ -332,6 +332,7 @@ MonoBehaviour:
   IntroLogoTime: 4.5
   MinTimeInForDialog: 2
   DialogExitTime: 1
+  SkipPlaceEarth: 1
   SecondsToFadeOutEarth: 1.5
   SecondsOnEarth: 2
   SecondsOnSolarSystem: 5
@@ -349,6 +350,7 @@ MonoBehaviour:
   LogoHydrate: {fileID: 8300000, guid: 5dff9d547ec0fc7469dea0d3a95b5a24, type: 3}
   EarthPlacement: {fileID: 8300000, guid: 52e187b57accf84438b4c996bf088340, type: 3}
   EarthHydrate: {fileID: 8300000, guid: 4f2b3c23ed5fe6f48b67254d2ca36858, type: 3}
+  currentState: 0
 --- !u!4 &1750365916
 Transform:
   m_ObjectHideFlags: 0
@@ -477,6 +479,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
