@@ -27,6 +27,7 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
     public AudioClip Goal;
     public AudioClip Invitation;
     public AudioClip CenterEarth;
+    public AudioClip EarthCentered;
     public AudioClip Earth;
     public AudioClip SolarSystem;
     public AudioClip LogoHydrate;
@@ -188,6 +189,13 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
             case IntroductionState.IntroductionStateEarthFadeout:
                 if (timeInState > SecondsToFadeOutEarth)
                 {
+                    if (!SkipPlaceEarth)
+                    {
+                        // If we placed the Earth, play the VO "Great!" to
+                        // give feedback to the user that they did something
+                        // important.
+                        VOManager.Instance.PlayClip(EarthCentered);
+                    }
                     VOManager.Instance.PlayClip(Earth);
                     AdvanceIntroduction();
                 }

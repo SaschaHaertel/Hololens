@@ -345,6 +345,7 @@ MonoBehaviour:
   Goal: {fileID: 8300000, guid: 043fe617e5423af42a6613c606b0b43c, type: 3}
   Invitation: {fileID: 8300000, guid: ddaadfbfcee2de64cafe2448f1db3881, type: 3}
   CenterEarth: {fileID: 8300000, guid: ae013e49932759c4dbbfffdad9051c4c, type: 3}
+  EarthCentered: {fileID: 8300000, guid: bf49a870c7c52eb49903cc69416ca041, type: 3}
   Earth: {fileID: 8300000, guid: 59c0178a1a147d54b8839b225c406cef, type: 3}
   SolarSystem: {fileID: 8300000, guid: 706996a4c7225cf41a37c840180f883f, type: 3}
   LogoHydrate: {fileID: 8300000, guid: 5dff9d547ec0fc7469dea0d3a95b5a24, type: 3}
