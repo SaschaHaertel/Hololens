@@ -12,6 +12,10 @@ public class LODInstanceSunReceiver : MonoBehaviour
     private void Awake()
     {
         currentRenderer = GetComponent<MeshRenderer>();
+#if UNITY_EDITOR
+        // We don't want to change the material in the Editor, but a copy of it.
+        currentRenderer.sharedMaterial = new Material(currentRenderer.sharedMaterial);
+#endif
     }
 
     private void Update()

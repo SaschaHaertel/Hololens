@@ -46,6 +46,10 @@ public class SunLensFlareSetter : Fader
         {
             Destroy(this);
         }
+#if UNITY_EDITOR
+        // We don't want to change the material in the Editor, but a copy of it.
+        flaresMaterial = new Material(flaresMaterial);
+#endif
     }
 
     private void Update()

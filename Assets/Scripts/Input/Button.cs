@@ -74,11 +74,25 @@ public class Button : GazeSelectionTarget, IFadeTarget
         {
             Debug.LogWarning(gameObject.name + " Button has no default material.");
         }
+#if UNITY_EDITOR
+        else
+        {
+            // We don't want to change the material in the Editor, but a copy of it.
+            DefaultMaterial = new Material(DefaultMaterial);
+        }
+#endif
 
         if (HightlightMaterial == null)
         {
             Debug.LogWarning(gameObject.name + " Button has no highlight material.");
         }
+#if UNITY_EDITOR
+        else
+        {
+            // We don't want to change the material in the Editor, but a copy of it.
+            HightlightMaterial = new Material(HightlightMaterial);
+        }
+#endif
 
         meshRenderer = GetComponentInChildren<MeshRenderer>();
 

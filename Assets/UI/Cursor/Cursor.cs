@@ -64,6 +64,10 @@ public class Cursor : Singleton<Cursor>
         {
             Destroy(this);
         }
+#if UNITY_EDITOR
+        // We don't want to change the material in the Editor, but a copy of it.
+        cursorMaterial = new Material(cursorMaterial);
+#endif
     }
 
     private IEnumerator Start()
