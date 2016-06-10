@@ -5,13 +5,13 @@
 # Write a line equal to 'overwrite-all' (without quotes) to overwrite everything (preserved accross builds)
 # Write a line equal to 'keep-all' (without quotes) to keep files regardless their modification (preserved accross builds)
 # Default behavior is to never overwrite files
-GalaxyExplorer.sln: D572BB367520A1AA45ED14AD0FB40A3C
+GalaxyExplorer.sln: modified
 project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
 Assembly-CSharp\project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
 Assembly-CSharp-firstpass\project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
 GalaxyExplorer\App.cs: F1E85E099EFE7F14F5CD175E227DBF15
 GalaxyExplorer\GalaxyExplorer.csproj: 5B775E291EC64E46A682777C763A4191
-GalaxyExplorer\GalaxyExplorer.csproj.user: BEFB8AC4886C4CFDD3C68445D6F19B04
+GalaxyExplorer\GalaxyExplorer.csproj.user: modified
 GalaxyExplorer\Package.appxmanifest: F037B4E98D7A20B55DBF86EA4986B8EB
 GalaxyExplorer\project.json: 1D02BC64BAC0D041019673A1C4C51737
 GalaxyExplorer\Assets\SplashScreen.scale-200.png: 60618416282ED104FD1473935716045D
