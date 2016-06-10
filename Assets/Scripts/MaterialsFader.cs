@@ -8,6 +8,17 @@ public class MaterialsFader : Fader
 
     private MaterialSettings[] settings;
 
+#if UNITY_EDITOR
+    private void Awake()
+    {
+        for (int i = 0; i < materials.Length; i++)
+        {
+            // We don't want to change the material in the Editor, but a copy of it.
+            materials[i] = new Material(materials[i]);
+        }
+    }
+#endif
+
     private void Start()
     {
         settings = new MaterialSettings[materials.Length];

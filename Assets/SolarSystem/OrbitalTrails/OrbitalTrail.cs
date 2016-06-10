@@ -278,6 +278,10 @@ public class OrbitalTrail : MonoBehaviour
 
         var orbitsRenderer = OrbitsRenderer.GetOrCreate(planet.transform.parent);
         orbitsRenderer.AddOrbit(this, realPositions, schematicPositions);
+#if UNITY_EDITOR
+        // We don't want to change the material in the Editor, but a copy of it.
+        orbitMaterial = TrueScaleSetting.Instance.OrbitsMaterial;
+#endif
         orbitsRenderer.orbitsMaterial = orbitMaterial;
     }
 

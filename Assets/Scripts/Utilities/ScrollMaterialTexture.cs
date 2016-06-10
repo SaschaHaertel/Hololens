@@ -12,6 +12,17 @@ public class ScrollMaterialTexture : MonoBehaviour
 
     private float currentOffset;
 
+#if UNITY_EDITOR
+    private void Awake()
+    {
+        if (material)
+        {
+            // We don't want to change the material in the Editor, but a copy of it.
+            material = new Material(material);
+        }
+    }
+#endif
+
     private void Update()
     {
         currentOffset += Time.deltaTime * speed;

@@ -75,6 +75,17 @@ public class PointOfInterest : GazeSelectionTarget
     private Vector3 targetOffset;
     protected bool initialized = false;
 
+#if UNITY_EDITOR
+    private void Awake()
+    {
+        if (MaterialToFade)
+        {
+            // We don't want to change the material in the Editor, but a copy of it.
+            MaterialToFade = new Material(MaterialToFade);
+        }
+    }
+#endif
+
     protected virtual void OnEnable()
     {
         if (!initialized)

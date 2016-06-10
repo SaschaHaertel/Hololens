@@ -28,6 +28,15 @@ public class TrueScaleSetting : Singleton<TrueScaleSetting>
 
     private void Awake()
     {
+#if UNITY_EDITOR
+        MaterialsFader matfad = GetComponentInParent<MaterialsFader>();
+        if (matfad)
+        {
+            // We don't want to change the material in the Editor, but a copy of it.
+            AsteroidMaterial = matfad.materials[0];
+            OrbitsMaterial = matfad.materials[1];
+        }
+#endif
         planets = FindObjectsOfType<OrbitUpdater>().ToArray();
         originalScales = planets.Select(p => p.transform.localScale.x).ToArray();
         previousRealismScale = -1;
@@ -81,7 +90,7 @@ public class TrueScaleSetting : Singleton<TrueScaleSetting>
                 if (AsteroidBelt)
                 {
                     var desiredAsteroidScale = Mathf.Lerp(1, AsteroidBeltRealismScale, CurrentRealismScale);
-                    
+
                     AsteroidBelt.localScale = new Vector3(desiredAsteroidScale, desiredAsteroidScale, desiredAsteroidScale);
 
                     AsteroidMaterial.SetFloat("_TransitionAlpha", 1 - CurrentRealismScale);

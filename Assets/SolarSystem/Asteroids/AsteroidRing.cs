@@ -47,6 +47,14 @@ public class AsteroidRing : MonoBehaviour
     // the size of the asteroid belt to fit appropriately in the solar system
     public Vector3 defaultLocalScale = new Vector3(0.833f, 0.833f, 0.833f);
     
+#if UNITY_EDITOR
+    private void Awake()
+    {
+        // We don't want to change the material in the Editor, but a copy of it.
+        instancingMaterial = TrueScaleSetting.Instance.AsteroidMaterial;
+    }
+#endif
+
     private void Start()
     {
         meshFilter = GetComponent<MeshFilter>();

@@ -73,16 +73,37 @@ public class Tool : GazeSelectionTarget, IFadeTarget
         {
             Debug.LogWarning(gameObject.name + " Tool has no active material.");
         }
+#if UNITY_EDITOR
+        else
+        {
+            // We don't want to change the material in the Editor, but a copy of it.
+            DefaultMaterial = new Material(DefaultMaterial);
+        }
+#endif
 
         if (HighlightMaterial == null)
         {
             Debug.LogWarning(gameObject.name + " Tool has no highlight material.");
         }
+#if UNITY_EDITOR
+        else
+        {
+            // We don't want to change the material in the Editor, but a copy of it.
+            HighlightMaterial = new Material(HighlightMaterial);
+        }
+#endif
 
         if (SelectedMaterial == null)
         {
             Debug.LogWarning(gameObject.name + " Tool has no selected material.");
         }
+#if UNITY_EDITOR
+        else
+        {
+            // We don't want to change the material in the Editor, but a copy of it.
+            SelectedMaterial = new Material(SelectedMaterial);
+        }
+#endif
 
         meshRenderer = GetComponentInChildren<MeshRenderer>();
 

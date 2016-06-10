@@ -116,6 +116,14 @@ public class DrawStars : MonoBehaviour
         {
             holoCube = TransitionManager.Instance.ViewVolume.GetComponentInChildren<HoloCube>(includeInactive: true);
         }
+
+#if UNITY_EDITOR
+        if (referenceQuad && referenceQuad.sharedMaterial)
+        {
+            // We don't want to change the material in the Editor, but a copy of it.
+            referenceQuad.sharedMaterial = new Material(referenceQuad.sharedMaterial);
+        }
+#endif
     }
 
     public void CreateBuffers(StarVertDescriptor[] stars)
