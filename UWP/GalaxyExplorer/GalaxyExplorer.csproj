@@ -180,8 +180,14 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>.\Unprocessed\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.HoloLens">
+      <HintPath>.\Unprocessed\UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>.\Unprocessed\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VR">
+      <HintPath>.\Unprocessed\UnityEngine.VR.dll</HintPath>
     </Reference>
     <Content Include="AudioPluginMsHRTF.dll" />
     <Content Include="AudioPluginMsHRTF.pdb" Condition="Exists('AudioPluginMsHRTF.pdb')" />
@@ -270,13 +276,15 @@
            <RemoveDebuggableAttribute>False</RemoveDebuggableAttribute>
         </PropertyGroup>
         <Message Importance="high" Text="Running AssemblyConverter..." />
-        <Exec Command="&quot;$(UnityWSAToolsDir)\AssemblyConverter.exe&quot; -platform=uap -lock=&quot;$(ProjectDir)project.lock.json&quot; -bits=$(UnityBits) -configuration=$(Configuration) -removeDebuggableAttribute=$(RemoveDebuggableAttribute) -path=&quot;.&quot; -path=&quot;..\Players\UAP\$(PlatformTarget)\$(Configuration)&quot; &quot;$(ProjectDir)Assembly-CSharp.dll&quot; &quot;$(ProjectDir)Assembly-CSharp-firstpass.dll&quot; &quot;$(ProjectDir)UnityEngine.dll&quot; &quot;$(ProjectDir)UnityEngine.UI.dll&quot; &quot;$(ProjectDir)UnityEngine.Networking.dll&quot;" />
+        <Exec Command="&quot;$(UnityWSAToolsDir)\AssemblyConverter.exe&quot; -platform=uap -lock=&quot;$(ProjectDir)project.lock.json&quot; -bits=$(UnityBits) -configuration=$(Configuration) -removeDebuggableAttribute=$(RemoveDebuggableAttribute) -path=&quot;.&quot; -path=&quot;..\Players\UAP\$(PlatformTarget)\$(Configuration)&quot; &quot;$(ProjectDir)Assembly-CSharp.dll&quot; &quot;$(ProjectDir)Assembly-CSharp-firstpass.dll&quot; &quot;$(ProjectDir)UnityEngine.dll&quot; &quot;$(ProjectDir)UnityEngine.UI.dll&quot; &quot;$(ProjectDir)UnityEngine.HoloLens.dll&quot; &quot;$(ProjectDir)UnityEngine.Networking.dll&quot; &quot;$(ProjectDir)UnityEngine.VR.dll&quot;" />
         <Message Importance="high" Text="AssemblyConverter done." />
         <Message Importance="high" Text="Modifying AppxPackagePayload" />
         <ItemGroup>
             <AppxPackagePayload Remove="@(AppxPackagePayload)" Condition="'%(TargetPath)' == 'UnityEngine.dll'" />
             <AppxPackagePayload Remove="@(AppxPackagePayload)" Condition="'%(TargetPath)' == 'UnityEngine.UI.dll'" />
+            <AppxPackagePayload Remove="@(AppxPackagePayload)" Condition="'%(TargetPath)' == 'UnityEngine.HoloLens.dll'" />
             <AppxPackagePayload Remove="@(AppxPackagePayload)" Condition="'%(TargetPath)' == 'UnityEngine.Networking.dll'" />
+            <AppxPackagePayload Remove="@(AppxPackagePayload)" Condition="'%(TargetPath)' == 'UnityEngine.VR.dll'" />
             <AppxPackagePayload Remove="@(AppxPackagePayload)" Condition="'%(TargetPath)' == 'Assembly-CSharp.dll'" />
             <AppxPackagePayload Remove="@(AppxPackagePayload)" Condition="'%(TargetPath)' == 'Assembly-CSharp-firstpass.dll'" />
         </ItemGroup>
@@ -287,8 +295,14 @@
             <AppxPackagePayload Include="$(ProjectDir)UnityEngine.UI.dll">
                 <TargetPath>UnityEngine.UI.dll</TargetPath>
             </AppxPackagePayload>
+            <AppxPackagePayload Include="$(ProjectDir)UnityEngine.HoloLens.dll">
+                <TargetPath>UnityEngine.HoloLens.dll</TargetPath>
+            </AppxPackagePayload>
             <AppxPackagePayload Include="$(ProjectDir)UnityEngine.Networking.dll">
                 <TargetPath>UnityEngine.Networking.dll</TargetPath>
+            </AppxPackagePayload>
+            <AppxPackagePayload Include="$(ProjectDir)UnityEngine.VR.dll">
+                <TargetPath>UnityEngine.VR.dll</TargetPath>
             </AppxPackagePayload>
             <AppxPackagePayload Include="$(ProjectDir)Assembly-CSharp.dll">
                 <TargetPath>Assembly-CSharp.dll</TargetPath>
