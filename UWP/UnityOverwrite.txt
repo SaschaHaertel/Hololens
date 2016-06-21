@@ -10,7 +10,7 @@ project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
 Assembly-CSharp\project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
 Assembly-CSharp-firstpass\project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
 GalaxyExplorer\App.cs: modified
-GalaxyExplorer\GalaxyExplorer.csproj: CD36F02E1DF8EB4E033CA009D23631B2
+GalaxyExplorer\GalaxyExplorer.csproj: modified
 GalaxyExplorer\GalaxyExplorer.csproj.user: modified
 GalaxyExplorer\Package.appxmanifest: F037B4E98D7A20B55DBF86EA4986B8EB
 GalaxyExplorer\project.json: 1D02BC64BAC0D041019673A1C4C51737
@@ -23,4 +23,13 @@ GalaxyExplorer\Assets\Square44x44Logo.targetsize-256_altform-unplated.png: 92EF9
 GalaxyExplorer\Assets\StoreLogo.png: 131E6693060DE181E8AE477B781F4B38
 GalaxyExplorer\Assets\StoreLogo.scale-400.png: F95C73B467976269365081CC6A6FA786
 GalaxyExplorer\Assets\Wide310x150Logo.scale-200.png: A287E3C81D97CE57C80FE54E7E0690EB
+GalaxyExplorer\bin\x86\Release\AppX\Assets\SplashScreen.scale-200.png: 60618416282ED104FD1473935716045D
+GalaxyExplorer\bin\x86\Release\AppX\Assets\Square150x150Logo.scale-200.png: F557156D8DCCCCF040E5C9CE3ECA6F6D
+GalaxyExplorer\bin\x86\Release\AppX\Assets\Square150x150Logo.scale-400.png: 497E684CF92C07977AD183F1C1CCD986
+GalaxyExplorer\bin\x86\Release\AppX\Assets\Square44x44Logo.scale-200.png: FE5747D18FF3E13DD74B2C8276D229F2
+GalaxyExplorer\bin\x86\Release\AppX\Assets\Square44x44Logo.targetsize-24_altform-unplated.png: 92197615B5B4236D54632AB8E9A5174F
+GalaxyExplorer\bin\x86\Release\AppX\Assets\Square44x44Logo.targetsize-256_altform-unplated.png: 92EF9A48BB08FB29C393E8E409209BC9
+GalaxyExplorer\bin\x86\Release\AppX\Assets\StoreLogo.png: 131E6693060DE181E8AE477B781F4B38
+GalaxyExplorer\bin\x86\Release\AppX\Assets\StoreLogo.scale-400.png: F95C73B467976269365081CC6A6FA786
+GalaxyExplorer\bin\x86\Release\AppX\Assets\Wide310x150Logo.scale-200.png: A287E3C81D97CE57C80FE54E7E0690EB
 GalaxyExplorer\Properties\AssemblyInfo.cs: modified
