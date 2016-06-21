@@ -254,7 +254,7 @@
   </PropertyGroup>
 
   <Target Name="BeforeResolveReferences" Condition="'$(BuildingProject)' == 'true'" > 
-        <Copy SourceFiles="$(ProjectDir)Plugins\$(PlatformShortName)\AudioPluginMsHRTF.dll" DestinationFiles="$(ProjectDir)AudioPluginMsHRTF.dll" />
+        <Copy SourceFiles="$(ProjectDir)Plugins\$(PlatformShortName)\AudioPluginMsHRTF.dll" DestinationFiles="$(ProjectDir)AudioPluginMsHRTF.dll" Condition="Exists('$(ProjectDir)Plugins\$(PlatformShortName)\AudioPluginMsHRTF.dll')"/>
             <Delete Files="$(ProjectDir)AudioPluginMsHRTF.pdb" Condition="Exists('$(ProjectDir)AudioPluginMsHRTF.pdb')" />
             <Delete Files="$(ProjectDir)AudioPluginMsHRTF.dll.mdb" Condition="Exists('$(ProjectDir)AudioPluginMsHRTF.dll.mdb')" />
             <Copy SourceFiles="$(ProjectDir)Plugins\$(PlatformShortName)\AudioPluginMsHRTF.pdb" DestinationFiles="$(ProjectDir)AudioPluginMsHRTF.pdb" Condition="Exists('$(ProjectDir)Plugins\$(PlatformShortName)\AudioPluginMsHRTF.pdb')" />
